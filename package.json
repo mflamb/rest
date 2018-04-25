@@ -1,0 +1,23 @@
+{
+  "name": "rest",
+  "version": "1.0.0",
+  "description": "Rest API",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon index.js | pino",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "x"
+  },
+  "author": "x",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3",
+    "pino": "^4.16.1"
+  }
+}
