@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon index.js | pino",
-    "test": "mocha test | pino",
-    "watch": "mocha test --watch"
+    "test": "mocha test --recursive",
+    "watch": "mocha test --recursive --watch"
   },
   "repository": {
     "type": "git",

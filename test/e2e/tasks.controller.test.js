@@ -7,7 +7,7 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const app = require('../index.js');
+const app = require('../../index.js');
 const request = chai.request(app);
 
 after(() => app.close());
@@ -18,7 +18,7 @@ describe('GET /tasks', () => {
             .get('/v1/tasks')
             .then(res => {
                 res.should.have.status(200);
-                res.body.should.deep.equal([]);
+                res.body.should.be.an('array');
                 done();
             })
             .catch(done);
