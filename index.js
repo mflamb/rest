@@ -28,7 +28,7 @@ consign()
     .include('api')
     .into(app);
 
-// console.log(api);
+// Add controllers to the server
 const flattened = flatten(app.api);
 Object.entries(flattened).forEach(([route, router]) => {
     route = '/' + route.replace(/\.controller$/, '').replace(/\./g, '/');
@@ -36,6 +36,8 @@ Object.entries(flattened).forEach(([route, router]) => {
     server.use(route, router);
 });
 
+// Remove .model from the keys.
+// Needs to be updated if models are put into sub directories
 Object.entries(app.models).forEach(([modelKey, model]) => {
     app.models[modelKey.replace(/.model$/,'')] = model;
 });
@@ -45,5 +47,5 @@ server.close = httpServer.close.bind(httpServer);
 
 console.log(`Listening on port ${process.env.PORT}`);
 
+// Expose server for tests
 module.exports = server;
-
