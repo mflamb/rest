@@ -7,7 +7,12 @@ module.exports = (app) => {
     const router = express.Router();
 
     router.get('/', (req, res) => {
-        res.json([]);
+
+        app.models.tasks
+            .find()
+            .then(docs => {
+                res.json(docs);
+            });
     });
 
     return router;

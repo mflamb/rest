@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const helmet = require('helmet');
 const server = express();
 const pino = require('pino')({
     level: 'debug'
@@ -10,11 +11,20 @@ const pino = require('pino')({
 const consign = require('consign');
 const flatten = require('flat');
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/todos')
+    .then(
+        () => pino.info('connected to Mongoose'),
+        (e) => pino.error('Mongoose connection error', e)
+    );
+
+server.use(helmet());
 pino.info('starting app');
 
 const app = {};
 
 consign()
+    .include('models')
     .include('api')
     .into(app);
 
@@ -26,6 +36,9 @@ Object.entries(flattened).forEach(([route, router]) => {
     server.use(route, router);
 });
 
+Object.entries(app.models).forEach(([modelKey, model]) => {
+    app.models[modelKey.replace(/.model$/,'')] = model;
+});
 
 const httpServer = server.listen(process.env.PORT);
 server.close = httpServer.close.bind(httpServer);
