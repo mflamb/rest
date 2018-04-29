@@ -34,11 +34,13 @@ module.exports = (app) => {
      *  /api/v1/tasks:
      *      post:
      *          description: Add a task
-     *          produced:
+     *          produces:
      *              - application/json
      *          parameters:
-     *              - name: title
-     *              - name: done
+     *              - in: body
+     *                name: task
+     *                schema:
+     *                  $ref: '#/definitions/Task'
      *          responses:
      *              200:
      *                  description: tasks
@@ -51,7 +53,9 @@ module.exports = (app) => {
 
         const incoming = req.body;
 
-        app.models.tasks
+        const task = app.models.tasks(incoming);
+
+        task
             .save(incoming)
             .then(doc => res.json(doc))
             .catch(e => res.error(e));

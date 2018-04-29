@@ -11,6 +11,9 @@ const pino = require('pino')({
 const consign = require('consign');
 const flatten = require('flat');
 
+const bodyParser = require('body-parser');
+server.use(bodyParser.json());
+
 const mongoose = require('mongoose');
 const connection = mongoose.createConnection('mongodb://localhost/todos');
 
