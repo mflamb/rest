@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('./logger');
+const logger = require('../services/logger')();
 const mongoose = require('mongoose');
 const connection = mongoose.createConnection('mongodb://localhost/todos');
 

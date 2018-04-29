@@ -5,7 +5,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const helmet = require('helmet');
-const logger = require('./logger');
+const logger = require('../services/logger')();
 
 
 logger.info('app booting');

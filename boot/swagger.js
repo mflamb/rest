@@ -1,8 +1,9 @@
 'use strict';
 
+const swaggerJSDoc = require('swagger-jsdoc');
+
 module.exports = server => {
 
-    const swaggerJSDoc = require('swagger-jsdoc');
 
     const options = {
         swaggerDefinition: {

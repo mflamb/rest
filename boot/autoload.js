@@ -2,7 +2,7 @@
 
 const consign = require('consign');
 const flatten = require('flat');
-const logger = require('./logger');
+const logger = require('../services/logger')();
 
 module.exports = (server, connection) => {
 
@@ -11,6 +11,7 @@ module.exports = (server, connection) => {
     };
 
     consign()
+        .include('services')
         .include('models')
         .include('api')
         .into(app);
