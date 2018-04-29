@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+process.env.LOG_ENABLED = false;
 
 const chai = require('chai');
 const should = chai.should();
