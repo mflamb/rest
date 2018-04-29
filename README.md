@@ -22,6 +22,6 @@ npm run dev
 * autoload models and controllers with [consign](https://github.com/jarradseers/consign)
 * logging with log levels using [pino](https://github.com/pinojs/pino)
 * [Mongo](https://github.com/mongodb/mongo) ORM with [Mongoose](https://github.com/Automattic/mongoose)
-* [mocha](https://github.com/mochajs/mocha) test using [chai](https://github.com/chaijs/chai) should
-* [chai-http](https://github.com/chaijs/chai-http) E2E test
+* [mocha](https://github.com/mochajs/mocha) tests using [chai](https://github.com/chaijs/chai) should
+* [chai-http](https://github.com/chaijs/chai-http) E2E tests
 
