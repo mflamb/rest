@@ -42,6 +42,8 @@ server.get('/api/api-docs.json', function(req, res) {
     res.send(swaggerSpec);
 });
 
+const swaggerUi = require('swagger-ui-express');
+server.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const app = {
     connection
