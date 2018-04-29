@@ -25,6 +25,8 @@
     "mongoose": "^5.0.16",
     "nodemon": "^1.17.3",
     "pino": "^4.16.1",
+    "swagger-jsdoc": "^1.9.7",
+    "swagger-ui-express": "^3.0.8",
     "traverse": "^0.6.6"
   },
   "devDependencies": {

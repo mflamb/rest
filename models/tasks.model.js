@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-module.exports = () => {
+module.exports = (app) => {
     const tasksSchema = mongoose.Schema({
         title: String,
         done: {
@@ -11,5 +11,5 @@ module.exports = () => {
         }
     });
 
-    return mongoose.model('Tasks', tasksSchema);
+    return app.connection.model('Tasks', tasksSchema);
 };

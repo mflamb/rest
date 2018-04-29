@@ -12,8 +12,9 @@ const consign = require('consign');
 const flatten = require('flat');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todos')
-    .then(
+const connection = mongoose.createConnection('mongodb://localhost/todos');
+
+connection.then(
         () => pino.info('connected to Mongoose'),
         (e) => pino.error('Mongoose connection error', e)
     );
@@ -21,7 +22,9 @@ mongoose.connect('mongodb://localhost/todos')
 server.use(helmet());
 pino.info('starting app');
 
-const app = {};
+const app = {
+    connection
+};
 
 consign()
     .include('models')
@@ -31,7 +34,7 @@ consign()
 // Add controllers to the server
 const flattened = flatten(app.api);
 Object.entries(flattened).forEach(([route, router]) => {
-    route = '/' + route.replace(/\.controller$/, '').replace(/\./g, '/');
+    route = '/api/' + route.replace(/\.controller$/, '').replace(/\./g, '/');
     pino.debug(`mounting router at: ${route}`);
     server.use(route, router);
 });

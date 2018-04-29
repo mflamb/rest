@@ -15,7 +15,7 @@ after(() => app.close());
 describe('GET /tasks', () => {
     it('responds with JSON', (done) => {
         request
-            .get('/v1/tasks')
+            .get('/api/v1/tasks')
             .then(res => {
                 res.should.have.status(200);
                 res.body.should.be.an('array');
@@ -23,4 +23,5 @@ describe('GET /tasks', () => {
             })
             .catch(done);
     });
+
 });
