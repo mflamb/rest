@@ -2,15 +2,6 @@
 
 Rest api demo to be turned into a Yeoman generator later.
 
-## Getting started
-
-```bash
-git clone git@github.com:pajtai/rest.git
-cd rest
-npm i
-npm run dev
-```
-
 ## Features
 
 * [nodemon](https://github.com/remy/nodemon) workflow
@@ -25,3 +16,11 @@ npm run dev
 * [mocha](https://github.com/mochajs/mocha) tests using [chai](https://github.com/chaijs/chai) should
 * [chai-http](https://github.com/chaijs/chai-http) E2E tests
 
+## Getting started
+
+```bash
+git clone git@github.com:pajtai/rest.git
+cd rest
+npm i
+npm run dev
+```
