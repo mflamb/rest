@@ -18,6 +18,10 @@ Rest api demo to be turned into a Yeoman generator later.
 
 ## Getting started
 
+You should have [node](https://nodejs.org/en/) installed (you can use [NVM](https://github.com/creationix/nvm)) and 
+[Mongo](https://www.mongodb.com/) installed (you can use [Brew](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition-with-homebrew) 
+and [Brew Services](https://github.com/Homebrew/homebrew-services))
+
 ```bash
 git clone git@github.com:pajtai/rest.git
 cd rest
