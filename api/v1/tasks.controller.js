@@ -4,6 +4,8 @@ const express = require('express');
 
 module.exports = (app) => {
 
+    app.services.logger.debug('Tasks Controller Loaded');
+
     const router = express.Router();
 
     /**

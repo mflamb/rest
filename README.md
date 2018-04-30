@@ -10,7 +10,7 @@ Rest api demo to be turned into a Yeoman generator later.
 * json [body-parser](https://github.com/expressjs/body-parser)
 * [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc) at http://localhost:3333/api/api-docs.json
 * [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express) at http://localhost:3333/api/api-docs/#/
-* autoload models and controllers with [consign](https://github.com/jarradseers/consign)
+* autoload services, models, and controllers with [consign](https://github.com/jarradseers/consign)
 * logging with log levels using [pino](https://github.com/pinojs/pino)
 * [Mongo](https://github.com/mongodb/mongo) ORM with [Mongoose](https://github.com/Automattic/mongoose)
 * [mocha](https://github.com/mochajs/mocha) tests using [chai](https://github.com/chaijs/chai) should

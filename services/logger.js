@@ -6,7 +6,8 @@ const logger = pino({
     level: process.env.LOG_LEVEL
 });
 
-module.exports = () => {
+module.exports = (app) => {
+    app && logger.debug('Loger loaded at: app.services.logger');
     return logger;
 };
 

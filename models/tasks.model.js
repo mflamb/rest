@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 module.exports = (app) => {
 
+    app.services.logger.debug('Tasks Model Loaded');
+
     /**
      *  @swagger
      *  definitions:
