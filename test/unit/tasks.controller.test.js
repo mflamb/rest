@@ -26,6 +26,7 @@ describe('GET /tasks', () => {
             .get('/api/v1/tasks')
             .then(res => {
                 stub.called.should.be.true;
+                should.not.exist(stub.getCall(0).args[0]);
                 done();
             })
             .catch(done);
