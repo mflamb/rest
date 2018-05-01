@@ -8,10 +8,10 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const app = require('../../index.js');
-const request = chai.request(app);
+const server = require('../../index.js').server;
+const request = chai.request(server);
 
-after(() => app.close());
+after(() => server.close());
 
 describe('GET /tasks', () => {
     it('responds with JSON', (done) => {

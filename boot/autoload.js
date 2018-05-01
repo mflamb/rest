@@ -29,4 +29,6 @@ module.exports = (server, connection) => {
     Object.entries(app.models).forEach(([modelKey, model]) => {
         app.models[modelKey.replace(/.model$/,'')] = model;
     });
+
+    return app;
 };
