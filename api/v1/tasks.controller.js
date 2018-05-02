@@ -28,7 +28,7 @@ module.exports = (app) => {
         app.models.tasks
             .find()
             .then(docs => res.json(docs))
-            .catch(e => res.error(e));
+            .catch(sendError(res));
     });
 
     /**
@@ -60,8 +60,36 @@ module.exports = (app) => {
         task
             .save(incoming)
             .then(doc => res.json(doc))
-            .catch(e => res.error(e));
+            .catch(sendError(res));
+    });
+
+    /**
+     *  @swagger
+     *  /api/v1/tasks/{id}:
+     *      delete:
+     *          description: Delete a task by id
+     *          parameters:
+     *              - in: path
+     *                name: id
+     *                schema:
+     *                  type: string
+     */
+    router.delete('/:id', (req, res) => {
+        console.log('about to delete', req.params.id);
+        app.models.tasks.findByIdAndRemove(req.params.id)
+            .then(doc => {
+                console.log('deleted', doc);
+                res.json(doc)
+            })
+            .catch(sendError(res));
     });
 
     return router;
 };
+
+function sendError(res) {
+    return error => {
+        res.status(500);
+        res.send(error);
+    }
+}
