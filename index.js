@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const helmet = require('helmet');
 const pino = require('pino');
 const logger = pino({
     level: process.env.LOG_LEVEL
@@ -12,6 +13,7 @@ const logger = pino({
 const { version } = require('./package');
 
 logger.info('starting app');
+app.use(helmet());
 app.get('/version', (req, res) => {
     res.send({ version });
 });
