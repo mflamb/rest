@@ -4,6 +4,7 @@
   "description": "Node REST API",
   "main": "index.js",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "nodemon": "^1.17.3",
     "pino": "^4.16.1"
