@@ -5,13 +5,14 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.3",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "pino": "^4.16.1"
   },
   "devDependencies": {
     "mocha": "^5.1.1"
   },
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon index.js | pino",
     "test": "mocha"
   },
   "repository": {
