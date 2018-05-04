@@ -11,10 +11,12 @@
     "pino": "^4.16.1"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
     "mocha": "^5.1.1"
   },
   "scripts": {
-    "dev": "nodemon index.js | pino",
+    "dev": "nodemon index.js --exec 'npm run lint && node' | pino",
+    "lint": "eslint .",
     "test": "mocha"
   },
   "repository": {
