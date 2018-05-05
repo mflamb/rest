@@ -2,26 +2,42 @@
 
 require('dotenv').config();
 
+const consign = require('consign');
 const express = require('express');
-const app = express();
+const flatten = require('flat');
+const server = express();
 const helmet = require('helmet');
 const pino = require('pino');
 const logger = pino({
     level: process.env.LOG_LEVEL
 });
-const todosController = require('./api/v1/todos.controller');
 
 const { version } = require('./package');
+const app = {};
+
+consign()
+    .include('api')
+    .into(app);
+
+// We only need to travers the api key
+const flattened = flatten(app.api);
+
+Object.entries(flattened).forEach(([route, router]) => {
+
+    const baseRoute = `/api/${route.replace(/\.controller$/, '').replace(/\./g, '/')}`;
+
+    logger.debug(`mounting router at: ${route}`);
+    server.use(baseRoute, router);
+});
 
 logger.info('starting app');
-app.use(helmet());
-app.get('/version', (req, res) => {
+server.use(helmet());
+server.get('/version', (req, res) => {
     res.send({ version });
 });
-app.use('/api/v1/todos', todosController());
-app.get('*', (req, res) => {
+server.get('*', (req, res) => {
     res.status(404).send({ message: 'Resource not found' });
 });
 
 logger.info(`listening at http://localhost:${process.env.PORT}`);
-app.listen(process.env.PORT);
+server.listen(process.env.PORT);
