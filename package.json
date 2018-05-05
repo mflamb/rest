@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "nodemon index.js --exec 'npm run lint && node' | pino",
-    "lint": "eslint .",
+    "lint": "eslint --color .",
     "test": "mocha"
   },
   "repository": {
