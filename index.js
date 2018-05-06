@@ -12,7 +12,9 @@ const logger = pino({
     level: process.env.LOG_LEVEL
 });
 
-const { version } = require('./package');
+logger.info('starting app');
+server.use(helmet());
+
 const app = {};
 
 consign()
@@ -29,11 +31,6 @@ Object.entries(flattened).forEach(([route, router]) => {
     server.use(baseRoute, router);
 });
 
-logger.info('starting app');
-server.use(helmet());
-server.get('/version', (req, res) => {
-    res.send({ version });
-});
 server.get('*', (req, res) => {
     res.status(404).send({ message: 'Resource not found' });
 });
