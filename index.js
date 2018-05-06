@@ -19,12 +19,11 @@ consign()
     .include('api')
     .into(app);
 
-// We only need to travers the api key
-const flattened = flatten(app.api);
+const flattened = flatten(app);
 
 Object.entries(flattened).forEach(([route, router]) => {
 
-    const baseRoute = `/api/${route.replace(/\.controller$/, '').replace(/\./g, '/')}`;
+    const baseRoute = `/${route.replace(/\.controller$/, '').replace(/\./g, '/')}`;
 
     logger.debug(`mounting router at: ${route}`);
     server.use(baseRoute, router);
