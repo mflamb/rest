@@ -12,20 +12,39 @@ const logger = pino({
     level: process.env.LOG_LEVEL
 });
 
+const mongoose = require('mongoose');
+const connection = mongoose.createConnection('mongodb://localhost/todos');
+
+connection.then(
+    () => logger.info('connected to Mongoose'),
+    (error) => logger.error('Mongoose connection error', error)
+);
+
 logger.info('starting app');
 server.use(helmet());
 
-const app = {};
+const app = {
+    connection
+};
 
 consign()
+    .include('models')
     .include('api')
     .into(app);
 
-const flattened = flatten(app);
+/**
+ * Remove .model from the keys.
+ * Needs to be updated if models are put into sub directories
+ */
+Object.entries(app.models).forEach(([modelKey, model]) => {
+    app.models[modelKey.replace(/.model$/, '')] = model;
+});
+
+const flattened = flatten(app.api);
 
 Object.entries(flattened).forEach(([route, router]) => {
 
-    const baseRoute = `/${route.replace(/\.controller$/, '').replace(/\./g, '/')}`;
+    const baseRoute = `/api/${route.replace(/\.controller$/, '').replace(/\./g, '/')}`;
 
     logger.debug(`mounting router at: ${route}`);
     server.use(baseRoute, router);
